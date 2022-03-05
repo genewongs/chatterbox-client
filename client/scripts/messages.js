@@ -5,7 +5,7 @@
 var Messages = {
 
   // TODO: Define how you want to store your messages.
-  _data: null,
+  _data: [],
 
   get: function(index) {
     return _data[index];

@@ -27,15 +27,20 @@ var App = {
     Parse.readAll((data) => {
       // examine the response from the server request:
       let messages = [];
+      var roomSet = new Set();
 
       for (let i = 0; i < data.length; i++) {
         messages.push(data[i]);
+        Messages._data.push(data[i]);
+        if (data[i].roomname !== null) {
+          roomSet.add(data[i].roomname);
+        }
       }
 
+      Rooms._data = roomSet;
+
       callback();
-
-      Messages._data = messages;
-
+      // Messages._data = messages;
       // TODO: Use the data to update Messages and Rooms
       // and re-render the corresponding views.
     });

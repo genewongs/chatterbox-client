@@ -10,22 +10,21 @@ var MessagesView = {
   initialize: function() {
     // TODO: Perform any work which needs to be done
     // when this view loads.
+    App.fetch(MessagesView.render);
   },
 
   render: function() {
     // TODO: Render _all_ the messages.
     var messages = Messages._data;
+    console.log(messages);
 
     for (let message of messages) {
-      this.renderMessage(message);
-      // this.$chats.append(rendered);
+      MessagesView.renderMessage(message);
     }
   },
 
   renderMessage: function(message) {
     // TODO: Render a single message.
-
-    //{message_id: 53460, roomname: '', text: 'hello world', username: 'Jin', github_handle
     //validation for message + username
 
     let $mainDiv = $('<div class="chat"></div>');
@@ -38,14 +37,13 @@ var MessagesView = {
     $mainDiv.append($usernameDiv);
     $mainDiv.append($messageDiv);
 
-    this.$chats.append($mainDiv);
-    // return $mainDiv;
+    MessagesView.$chats.append($mainDiv);
   },
 
   handleClick: function(event) {
     // TODO: handle a user clicking on a message
     // (this should add the sender to the user's friend list).
-  }
+  },
 
 };
 
