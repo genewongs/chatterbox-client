@@ -7,7 +7,14 @@ var Messages = {
   // TODO: Define how you want to store your messages.
   _data: null,
 
+  get: function(index) {
+    return _data[index];
+  }
+
   // TODO: Define methods which allow you to retrieve from,
   // add to, and generally interact with the messages.
+
+
+  //methods should be put here to interact with this data
 
 };
