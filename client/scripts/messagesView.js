@@ -53,10 +53,10 @@ var MessagesView = {
 
 
 
-    //set a var called message = messageview.render
-    //chats.prepend
-    //.prepend, .append
-    // let temp = MessageView.render;
-    // temp({username: 'test'});
-    // temp({message: 'test test test'});
-    // $chats.prepend(temp);
+//set a var called message = messageview.render
+//chats.prepend
+//.prepend, .append
+// let temp = MessageView.render;
+// temp({username: 'test'});
+// temp({message: 'test test test'});
+// $chats.prepend(temp);

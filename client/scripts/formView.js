@@ -22,7 +22,7 @@ var FormView = {
       roomname: null,
     };
 
-    console.log(message.text)
+    console.log(message.text);
 
     Parse.create(message);
 
