@@ -21,23 +21,31 @@ var App = {
 
     // TODO: Make sure the app loads data from the API
     // continually, instead of just once at the start.
+    App.fetch();
+    setInterval(App.fetch, 3000);
   },
 
   fetch: function(callback = ()=>{}) {
     Parse.readAll((data) => {
       // examine the response from the server request:
-      let messages = [];
-      var roomSet = new Set();
-
-      for (let i = 0; i < data.length; i++) {
-        messages.push(data[i]);
-        Messages._data.push(data[i]);
-        if (data[i].roomname !== null) {
-          roomSet.add(data[i].roomname);
+      data = data.map(obj => {
+        var cleanObj = {};
+        for (var key in obj) {
+          cleanObj[key] = filterXSS(obj[key]);
         }
-      }
+        return cleanObj;
+      });
 
-      Rooms._data = roomSet;
+      console.log(data);
+
+
+      Messages.get(data);
+      Rooms.get(data);
+      Friends.get(data);
+
+      //Create in ROOMS and in MESSAGES
+      //a method that retreieves the data and renders the messages/room list
+
 
       callback();
       // Messages._data = messages;

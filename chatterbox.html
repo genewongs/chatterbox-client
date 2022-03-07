@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="client/styles/styles.css">
     <script src="node_modules/jquery/dist/jquery.js"></script>
     <script src="node_modules/underscore/underscore.js"></script>
+    <script src="node_modules/xss/dist/xss.js"></script>
     <script>
       // DO NOT MODIFY THIS CODE
       if (!/(&|\?)username=/.test(window.location.search)) {
@@ -28,7 +29,7 @@
       <div id="rooms">
         Room:
         <select></select>
-        <button>Add Room</button>
+        <button class="add-room">Add Room</button>
       </div>
       <form action="#" id="send" method="post">
         <input type="text" name="message" id="message"/>

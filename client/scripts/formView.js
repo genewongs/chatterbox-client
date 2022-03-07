@@ -19,10 +19,8 @@ var FormView = {
     var message = {
       username: App.username,
       text: event.currentTarget[0].value,
-      roomname: null,
+      roomname: Rooms.selected,
     };
-
-    console.log(message.text);
 
     Parse.create(message);
 

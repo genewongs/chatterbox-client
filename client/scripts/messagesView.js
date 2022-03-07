@@ -6,21 +6,35 @@
 var MessagesView = {
 
   $chats: $('#chats'),
+  $users: $('.username'),
 
   initialize: function() {
     // TODO: Perform any work which needs to be done
     // when this view loads.
-    App.fetch(MessagesView.render);
   },
 
-  render: function() {
+  render: function(property, targetProperty) {
     // TODO: Render _all_ the messages.
+    //{username: alskdjf, text: laskdfjs, room: kajsdfks}
+    property = property || undefined;
     var messages = Messages._data;
-    console.log(messages);
 
-    for (let message of messages) {
-      MessagesView.renderMessage(message);
+    MessagesView.$chats.html('');
+
+    //check if roomname
+    if (property) {
+      var filtered = messages.filter(current => {
+        return current[property] === targetProperty;
+      });
+      filtered.forEach( message => {
+        MessagesView.renderMessage(message);
+      });
+    } else {
+      messages.forEach(message => {
+        MessagesView.renderMessage(message);
+      });
     }
+
   },
 
   renderMessage: function(message) {
@@ -28,8 +42,9 @@ var MessagesView = {
     //validation for message + username
 
     let $mainDiv = $('<div class="chat"></div>');
-    let $usernameDiv = $('<div class="username"></div>');
+    let $usernameDiv = $('<a href="#"><div class="username"></div></a>');
     $usernameDiv.text(message.username);
+    $usernameDiv.on('click', MessagesView.handleClick);
     let $messageDiv = $('<div class="message"></div>');
 
     $messageDiv.text(message.text);
@@ -43,6 +58,9 @@ var MessagesView = {
   handleClick: function(event) {
     // TODO: handle a user clicking on a message
     // (this should add the sender to the user's friend list).
+    let username = event.target.text;
+    Friends.addFriend(username);
+    Friends.toggleStatus(username);
   },
 
 };
